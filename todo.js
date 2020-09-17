@@ -5,6 +5,7 @@ const cardBody = document.querySelectorAll(".card-body")[0];
 const cardBody2 = document.querySelectorAll(".card-body")[1];
 const filter = document.querySelector("#filter");
 const clearButton = document.querySelector("#clear-todos");
+const formGroup = document.querySelector(".form-group");
 
 form.addEventListener("submit", addTodo);
 document.addEventListener("DOMContentLoaded",loadTodosFromStorage);
@@ -13,13 +14,14 @@ filter.addEventListener("keyup", filterTodos);
 clearButton.addEventListener("click", clearAllTodos);
 
 function clearAllTodos(e){
-    if(confirm("Tüm Listeyi Silmek İstediğinizden Emin Misiniz ?")){
+    if(confirm("Are you sure you want to delete all items ?")){
 
         while(list.firstElementChild != null){
             list.removeChild(list.firstElementChild);
         }
     }
     localStorage.removeItem("todos");
+    showAlert("info","Everything Has Gone!")
 }
 
 function filterTodos(e){
@@ -47,7 +49,7 @@ function deleteTodos(e){
     if(e.target.className === "fa fa-remove"){
         deleteTodosFromStorage(e.target.parentElement.parentElement.textContent)
         e.target.parentElement.parentElement.remove();
-        showAlert("success","Silme İşlmei Başarılı");
+        showAlert("success","Successfully Deleted!");
 
 
 
@@ -73,11 +75,11 @@ function loadTodosFromStorage(){
 function addTodo(e){
     const value = todoInput.value.trim();
     if (value === ""){
-        showAlert("danger", "Lütfen Bir Değer Giriniz");
+        showAlert("secondary", "Please type anything!");
     }
     else {
         addListItem(value);
-        showAlert("success", "Todo Girişi Başarılı!");
+        showAlert("info", "Successfully Added!");
         AddTodosToStorage(value);
     }
     e.preventDefault();
@@ -100,9 +102,13 @@ function AddTodosToStorage(value){
 function showAlert(type, message){
 
     const alert = document.createElement("div");
-    alert.className = `btn btn-${type}`
+    const arrow = document.createElement("div");
+    arrow.className =`arrow border border-${type}`;
+    alert.className = ` bg-${type}`
+    alert.id="alertPop";
     alert.textContent = message;
-    cardBody.appendChild(alert);
+    alert.appendChild(arrow);
+    formGroup.appendChild(alert);
     setTimeout(() => {
         alert.remove();
     }, 1500); 

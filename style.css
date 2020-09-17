@@ -1,0 +1,50 @@
+#alertPop{
+    height: 3rem;
+    width: 9rem;
+    position: absolute;
+
+    border-radius: 1rem;
+    display: flex;
+    top: -35%;
+    left: 103%;
+    color: #fff !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+
+}
+.arrow{
+    position: absolute;
+border-width: .5rem !important;
+border-top-color: transparent !important;
+border-left-color: transparent  !important;
+
+display: block;
+top: 35%;
+right: 99%;
+}
+@media (max-width: 768px){
+    html{
+        font-size:12px;
+    }
+    #alertPop{
+
+        top: 115% ;
+        left: 40% ;
+        color: #fff !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    
+    
+    }
+    .arrow{
+    border-right-color : transparent  !important ;
+
+    
+    display: block;
+    top: -30% ;
+    right: 50%;
+}
+}
